@@ -1,51 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         /* <!-- copied from https://fonts.google.com/specimen/Poppins --> */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&display=swap');
-*{
-    
-    box-sizing: border-box;
-    padding: 0px;
-    margin:0px;
-    font-family: 'Poppins', sans-serif;
-}
-.portfolio-container{
-    min-height: 100vh;
-    width: 100%;
-}
-.navlist{
-    display: flex;
-    column-gap: 2rem;
-}
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&display=swap');
 
-.navlist li{
- list-style: none;
+        * {
 
+            box-sizing: border-box;
+            padding: 0px;
+            margin: 0px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .portfolio-container {
+
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+
+        }
+
+        .navlist {
+            position: fixed;
+            width: 100%;
+            font-size: 1rem;
+            display: flex;
+            column-gap: 2rem;
+            padding: 1rem;
+            align-items: center;
+            justify-content: center;
+            /* or you can use vh for responsive design  */
+            /* height: 45px; */
+            height: 15vh;
+        }
+
+        .navlist li {
+
+            list-style: none;
+
+        }
+
+        .navlist li a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 1rem;
+            /* how this works  */
+            position: relative;
+        }
+
+        .left-container,
+        .right-container {
+            height: 100vh;
+        }
+
+        .left-container {
+            display: flex;
+            align-items: center;
+            padding-left: 3rem;
+            background-color: rgb(38, 41, 38);
+            width: 70%;
+        }
+
+        .right-container {
+            background: linear-gradient(-48deg, rgb(6, 65, 105) 50%,black);
+            background-color: rgb(99, 129, 227);
+            width: 30%;
+        }
+
+        .icons,
+        .fa-brands {
+            color: #bbb;
+        }
+
+        .icons {
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            display: flex;
+            font-size: 2.4rem;
+            gap: 2rem;
+            height: 100vh;
+        }
+
+        .content {
+            margin-left: 2rem;
+        }
+
+        .content p {
+            font-size: 1.5rem;
+            color: #fff
+        }
+
+        .content h2 {
+            font-size: 4rem;
+            color: #5db3bd;
+        }
+
+        .content .intro span {
+            color: #5db3bd;
+        }
+
+        .detail {
+            max-width: 500px;
+            margin: 1.1rem 0 3rem;
+            line-height: 1.8rem;
+        }
+
+        .button-container button {
+            border: .1rem solid #5db3bd;
+            font-size: 1.4rem;
+            padding: .8rem 1.5rem;
+            margin: 1rem;
+            border-radius: .5rem;
+            transition: .5s ease;
+        }
+
+        button:nth-child(1) {
+            background-color: #5db3bd;
+        }
+
+        button:nth-child(2) {
+            background-color: transparent;
+            color: #5db38e;
+        }
+
+        button:nth-child(2):hover {
+            background-color: #5db3bd;
+
+            color: black;
+        }
+
+        button:nth-child(1):hover {
+            background-color: transparent;
+            color: #5db3bd;
+        }
+
+        .icons .fa-brands:hover {
+            cursor: pointer;
+            color: rgb(119, 119, 201);
+        }
+
+        .design .circle {
+            position: absolute;
+            border-radius: 50%;
+            top:50%;
+            left: 70%;
+            transform: translate(-50%,-50%);
+            aspect-ratio: 1;
+        }
+
+        .circle:nth-child(1) {
+            background:linear-gradient(90deg,transparent 50%,#2b2828 50%);
+            width: 38rem;
+        }
+
+        .circle:nth-child(2) {
+            border: .4rem solid white;
+            background: white;
+            background-image: url(image/p.jpeg);
+            background-repeat: no-repeat;
+            background-size: 100%;
+            width: 30rem;
+            box-shadow: 0 0 50px rgba(51, 48, 204, 0.5), /* First shadow with radius 20px */
+       inset 0 0 50px rgba(239, 237, 237, 0.3), 
+        0 0 50px rgba(198, 201, 205, 0.2);
+        }
+        .navlist li a::after , .navlist .active::after{
+            content: "";
+            position: absolute;
+            left: 0;
+            background: #fff;
+            width: 100%;
+            height: .1rem;
+            /* confusion */
+            bottom: -5px;
+            transform: scaleX(0);
+            transform-origin:bottom right ;
+            transition: transform 0.5s;
+        }
+.navlist li a:hover:after,.navlist .active::after{
+    transform-origin: bottom left;
+    transform: scaleX(1);
 }
-
-.navlist li a{
-text-decoration: none;
-text-transform: uppercase;
-}
-
     </style>
 </head>
+
 <body>
     <div class="portfolio-container">
         <ul class="navlist">
             <li>
-                <a href="#">Home</a>
-                <li><a href="#">Work</a></li>
-               <li> <a href="#">About</a></li>
-                <li><a href="#">Project</a></li>
-                <li><a href="#">Service</a></li>
-            
+                <a href="#" class="active">Home</a>
+            <li><a href="#">Work</a></li>
+            <li> <a href="#">About</a></li>
+            <li><a href="#">Project</a></li>
+            <li><a href="#">Service</a></li>
+
         </ul>
+        <div class="left-container">
+            <div class="icons">
+                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-linkedin-in"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-codepen"></i>
+
+            </div>
+            <div class="content">
+                <p class="intro">
+                    Hi! i am <span>Puskar Kafle</span>
+                </p>
+                <h2>Web Developer</h1>
+                    <p class="detail">
+                        I am passonate software developer and solved the complex problems to solve this world
+                    </p>
+                    <div class="button-container">
+                        <button>
+                            hire me
+                        </button>
+                        <button>
+                            View Projects
+                        </button>
+
+                    </div>
+            </div>
+        </div>
+        <div class="right-container"></div>
+        <div class="design">
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
     </div>
 </body>
+
 </html>
+
+
+https://www.youtube.com/watch?v=qDkOrHv42rY&ab_channel=FunCoding
